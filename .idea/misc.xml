@@ -12,6 +12,8 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/web-study/pom.xml" />
+        <option value="$PROJECT_DIR$/network-study/pom.xml" />
+        <option value="$PROJECT_DIR$/leetcode-study/pom.xml" />
       </list>
     </option>
   </component>
