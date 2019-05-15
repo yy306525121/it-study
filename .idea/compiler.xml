@@ -10,6 +10,8 @@
         <module name="web-study" />
         <module name="it-study" />
         <module name="network-study" />
+        <module name="leetcode-study" />
+        <module name="java-study" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,6 +21,8 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="hessian-sample" options="" />
+      <module name="java-study" options="" />
+      <module name="leetcode-study" options="-parameters" />
       <module name="network-study" options="" />
       <module name="web-study" options="" />
     </option>
