@@ -7,9 +7,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author akafra
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+	@RequestMapping("")
+	public String home(){
+		return "user/index";
+	}
+
 	@RequestMapping("/list")
 	public List<User> list(){
 		ArrayList<User> userList = new ArrayList<>();
