@@ -6,6 +6,7 @@
 
     <groupId>cn.codeyang</groupId>
     <artifactId>it-study</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <name>it-study</name>
@@ -23,13 +24,14 @@
         <spring-boot.version>2.1.4.RELEASE</spring-boot.version>
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
         <platform-bom.version>Cairo-SR6</platform-bom.version>
+        <spring.version>5.1.6.RELEASE</spring.version>
     </properties>
 
 
     <modules>
         <module>web-study</module>
-        <module>hessian-sample</module>
         <module>network-study</module>
+        <module>spring-aop-study</module>
     </modules>
 
     <dependencyManagement>
