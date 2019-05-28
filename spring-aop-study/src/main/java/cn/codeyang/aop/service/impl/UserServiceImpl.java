@@ -1,6 +1,8 @@
 package cn.codeyang.aop.service.impl;
 
+import cn.codeyang.aop.annotation.ExtTransaction;
 import cn.codeyang.aop.dao.UserDao;
+import cn.codeyang.aop.service.LogService;
 import cn.codeyang.aop.service.UserService;
 import cn.codeyang.aop.tx.TransactionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private LogService logService;
 	@Autowired
 	private TransactionUtils transactionUtils;
 
@@ -32,8 +36,18 @@ public class UserServiceImpl implements UserService {
 	//}
 
 
+	//@ExtTransaction
+	@Transactional
 	@Override
 	public void add() {
+		//new Thread(new Runnable() {
+		//	@Override
+		//	public void run() {
+				logService.addLog();
+			//}
+		//}).start();
+
+
 		userDao.add("test001", 20);
 		int i = 1 / 0;
 		System.out.println("#################");

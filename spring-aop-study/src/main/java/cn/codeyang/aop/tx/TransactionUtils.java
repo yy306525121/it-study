@@ -8,7 +8,10 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
 
 @Component
+@Scope(value = "prototype")
 public class TransactionUtils {
+
+	private TransactionStatus transactionStatus;
 	//获取事务源
 	@Autowired
 	private DataSourceTransactionManager dataSourceTransactionManager;
@@ -17,21 +20,23 @@ public class TransactionUtils {
 	 * 开启事务
 	 */
 	public TransactionStatus begin(){
-		return dataSourceTransactionManager.getTransaction(new DefaultTransactionAttribute());
-
+		transactionStatus = dataSourceTransactionManager.getTransaction(new DefaultTransactionAttribute());
+		return transactionStatus;
 	}
 
 	/**
 	 * 提交事务
 	 */
-	public void commit(TransactionStatus status){
-		dataSourceTransactionManager.commit(status);
+	public void commit(){
+		dataSourceTransactionManager.commit(transactionStatus);
 	}
 
 	/**
 	 * 回滚事务
 	 */
-	public void rollback(TransactionStatus status){
-		dataSourceTransactionManager.rollback(status);
+	public void rollback(){
+		if (transactionStatus != null) {
+			dataSourceTransactionManager.rollback(transactionStatus);
+		}
 	}
 }

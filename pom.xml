@@ -6,7 +6,6 @@
 
     <groupId>cn.codeyang</groupId>
     <artifactId>it-study</artifactId>
-    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <name>it-study</name>
@@ -23,15 +22,17 @@
 
         <spring-boot.version>2.1.4.RELEASE</spring-boot.version>
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
-        <platform-bom.version>Cairo-SR6</platform-bom.version>
-        <spring.version>5.1.6.RELEASE</spring.version>
+        <platform-bom.version>Cairo-SR7</platform-bom.version>
     </properties>
 
 
     <modules>
         <module>web-study</module>
         <module>network-study</module>
+        <module>leetcode-study</module>
+        <module>java-study</module>
         <module>spring-aop-study</module>
+        <module>distribute-block</module>
     </modules>
 
     <dependencyManagement>
@@ -78,6 +79,10 @@
             <artifactId>junit</artifactId>
             <version>4.11</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 
