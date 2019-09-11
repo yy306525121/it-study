@@ -98,10 +98,11 @@ public class ConflationSort {
 
 	/**
 	 * 时间复杂度 nLogn
+	 *
 	 * @param head
 	 * @return
 	 */
-	public static ListNode sort(ListNode head){
+	public static ListNode sort(ListNode head) {
 		if (head == null || head.next == null) {
 			return head;
 		}
@@ -112,24 +113,121 @@ public class ConflationSort {
 
 		ListNode mergedNode = merge(sort(head), sort(right));
 		return mergedNode;
+	}
 
+
+	public static int getLength(ListNode head) {
+		int len = 0;
+		while (head != null) {
+			len++;
+			head = head.next;
+		}
+
+		return len;
+	}
+
+	public static ListNode getStep(ListNode head, int step) {
+		while (step > 0) {
+			if (head == null) {
+				return head;
+			}
+			head = head.next;
+			step--;
+		}
+
+		return head;
+	}
+
+	/**
+	 * 获取链表的尾结点
+	 * @param head
+	 * @return
+	 */
+	public static ListNode getTail(ListNode head){
+		while (head.next != null) {
+			head = head.next;
+		}
+
+		return head;
+	}
+
+	public static ListNode sort2(ListNode head) {
+
+		/**
+		 * 1: 获取链表长度
+		 */
+		int len = getLength(head);
+		int intv = 1;
+		ListNode res = new ListNode(0);
+		res.next = head;
+
+		while (intv < len) {
+			ListNode preTail = res;
+			ListNode h1 = preTail.next;
+			ListNode h2 = getStep(preTail.next, intv);
+			ListNode tail = null;
+			while (h1 != null) {
+				ListNode tailH1 = getStep(h1, intv-1);
+				ListNode tailH2 = getStep(h2, intv - 1);
+
+				ListNode nextH1 = getStep(h2, intv);
+				ListNode nextH2 = getStep(nextH1, intv);
+
+				// 截断h1和h2
+				if (tailH1 != null) {
+					tailH1.next = null;
+				}
+				if (tailH2 != null) {
+					tailH2.next = null;
+				}
+
+
+				ListNode mergedNode = merge(h1, h2);
+				preTail.next = mergedNode;
+				tail = getTail(mergedNode);
+				tail.next = nextH1;
+				preTail = tail;
+
+				h1 = nextH1;
+				h2 = nextH2;
+
+			}
+
+			intv = intv * 2;
+		}
+
+
+		return res.next;
 	}
 
 
 	public static void main(String[] args) {
-		ListNode node1 = new ListNode(4);
-		ListNode node2 = new ListNode(2);
-		ListNode node3 = new ListNode(1);
-		ListNode node4 = new ListNode(3);
-
+		ListNode node1 = new ListNode(2);
+		ListNode node2 = new ListNode(1);
+		ListNode node3 = new ListNode(5);
+		ListNode node4 = new ListNode(4);
+		ListNode node5 = new ListNode(3);
+		ListNode node6 = new ListNode(8);
+		ListNode node7 = new ListNode(7);
+		ListNode node8 = new ListNode(4);
+		ListNode node9 = new ListNode(9);
+		ListNode node10 = new ListNode(2);
+		ListNode node11 = new ListNode(-1);
 
 		node1.next = node2;
 		node2.next = node3;
 		node3.next = node4;
+		node4.next = node5;
+		node5.next = node6;
+		node6.next = node7;
+		node7.next = node8;
+		node8.next = node9;
+		node9.next = node10;
+		node10.next = node11;
 
-
-		ListNode middle = sort(node1);
-		System.out.println(middle.val);
+		ListNodeUtils.print(node1);
+		ListNode listNode = sort2(node1);
+		ListNodeUtils.print(listNode);
 	}
 
 }
