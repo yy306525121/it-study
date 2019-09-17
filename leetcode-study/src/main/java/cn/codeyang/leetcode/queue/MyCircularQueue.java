@@ -53,7 +53,7 @@ public class MyCircularQueue {
 	 * @return
 	 */
 	public int Front() {
-		if (head == tail) {
+		if (isEmpty()) {
 			return -1;
 		}
 		return queue[head];
@@ -65,7 +65,7 @@ public class MyCircularQueue {
 	 * @return
 	 */
 	public int Rear() {
-		if (head == tail) {
+		if (isEmpty()) {
 			return -1;
 		}
 
